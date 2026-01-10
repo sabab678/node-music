@@ -1,0 +1,146 @@
+body {
+    background-color: rgb(16, 16, 16);
+    color: rgb(255, 255, 255);
+}
+
+
+
+ul{
+    list-style-type: none;
+}
+
+
+
+.pdiv{
+
+    background-color: rgb(29, 30, 30);
+
+    height: 7vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 1;
+    top: 0
+
+
+
+    
+
+}
+
+
+.logo{
+    height: 6vh;
+    margin-left: 2vw;
+    border-radius: 8px;
+}
+
+
+.flex{
+    display: flex;
+    align-items: center;
+    
+} 
+
+
+
+.home{
+    margin-right: 1vw;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+
+
+
+.search{
+
+    justify-content: center;
+    height: 42px;
+    width: 45vh;
+    border-radius: 20px;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgb(49, 44, 44);
+    color: white;
+
+
+
+
+}
+
+
+
+
+
+    
+.div3ul{
+
+    gap: 2vw;
+    margin-right: 2vw;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+
+
+
+
+.page{
+    display: flex;
+    gap: 1vw;
+}
+
+
+
+.playlist{
+    width: 30vw;
+    border: 2px solid rgb(38, 36, 36);
+    background-color: rgb(43, 43, 41);
+    border-radius: 10px;
+    margin-top: 96px;
+    font-size: 25px;
+    padding: 10px;
+    
+}
+
+
+
+.addSvg{
+    margin-left: auto;
+    padding: 10px;
+}
+
+    
+    
+
+
+
+.album{
+    width: 70vw;
+    border: 2px solid rgb(34, 33, 33);
+    background-color: rgb(18, 18, 18);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;    
+    gap: 5px;
+    padding: 5px;
+    position: relative;
+    top: 10vh;
+}
+
+
+
+    
+
+
+
+
+
+
+
+.invert{
+    filter: invert(1);
+}
