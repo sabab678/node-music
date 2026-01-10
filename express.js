@@ -3,11 +3,13 @@ import fs from 'fs/promises';
 
 import express from 'express';
 
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 
 app.use(express.static('public'));
+app.use('/api/songs', express.static('song'));
 
 
 // app.get('/', (req, res) => {
@@ -18,23 +20,18 @@ app.use(express.static('public'));
 
 
 
-let songNum=async function(){
 
-const data =await fs.readFile('song.json', 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading file:', err);
-    return;
-  }
-//   console.log('File contents:', data);
-  let songObj=JSON.parse(data);
-  // let songLen=songObj.length;
 
+
+async function songNum() {
+  try {
+    const data = await fs.readFile('song.json', 'utf8');
+    const songObj = JSON.parse(data);
     return songObj.length;
-
-
-
-})
-
+  } catch (err) {
+    console.error('Error reading file:', err);
+    throw err;
+  }
 }
 
 
@@ -45,77 +42,47 @@ const data =await fs.readFile('song.json', 'utf8', (err, data) => {
 
 
 
+async function songList() {
+  const songCount = await songNum(); // total songs
+  const limit = Math.min(30, songCount);
 
-async function random(min,max){
+  const set = new Set();
 
-    let songNum = await songNum();
-    
-
-    if (songNum>30){
-
-        
-        let set =new Set();
-        while (set.size<30){
-            let randomNum=Math.floor(Math.random()*(max-min+1)+min);
-            set.add(randomNum);
-        }
-        // console.log(set);
-        
-    }
-
-    else{
-        let set =new Set();
-        while (set.size<songNum()){
-        let randomNum=Math.floor(Math.random()*(max-min+1)+min);
-        set.add(randomNum);
-        
-      }
-    }
-    return [...set];
-    
-};
-
-
-
-
-// console.log(random(0,songNum()));
-
-random(1,100).then((result)=>{
-    console.log(result);
-})
-.catch((error)=>{
-    console.error('Error:',error);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-fs.readFile('song.json', 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading file:', err);
-    return;
+  while (set.size < limit) {
+    const randomNum = Math.floor(Math.random() * songCount);
+    set.add(randomNum);
   }
-//   console.log('File contents:', data);
-//   let songObj=JSON.parse(data);
-//     console.log(songObj.length);
+
+  // console.log(set);
+  return [...set];
+}
+
+
+// console.log(await songList());
 
 
 
-})
+async function showSongs(list) {
+  try {
+    const data=await fs.readFile('song.json', 'utf8')
+    const songObj = JSON.parse(data);
+    const songs = list.map(index => songObj[index])
+    // console.log(songs);
+    return songs;
+  }
+  catch(err){
+    console.log(err);
+  }
+
+  
+}
+
+
+
+// (async () => {
+//   const indices = await songList();
+//   await showSongs(indices);
+// })();
 
 
 
@@ -124,6 +91,14 @@ fs.readFile('song.json', 'utf8', (err, data) => {
 
 
 
+app.get('/api/songs', async (req, res) => {
+  try {
+    const songs = await showSongs(await songList());
+    res.json(songs);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to load songs' });
+  }
+});
 
 
 
@@ -174,3 +149,135 @@ fs.readFile('song.json', 'utf8', (err, data) => {
 app.listen(port, () => {
   console.log(`Server is running on port:http://localhost:${port}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------short cut-------------------------------------------
+
+
+// async function getRandomSongs() {
+//   const data = await fs.readFile('song.json', 'utf8');
+//   const songs = JSON.parse(data);
+
+//   const limit = Math.min(30, songs.length);
+//   const set = new Set();
+
+//   while (set.size < limit) {
+//     set.add(Math.floor(Math.random() * songs.length));
+//   }
+
+//   return [...set].map(i => songs[i]);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function songNum() {
+//   try{
+
+//   return await fs.readFile('song.json', 'utf8')
+    
+//   let songObj = JSON.parse(data);
+//   let songLen=songObj.length;
+//     console.log(songLen);
+//   return songObj.length;
+    
+//   }
+//   catch(err){
+//     console.log(err);
+//   }
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+// async function songList() {
+  
+  
+//   const songCount = await songNum(); // total songs
+//   const limit = songCount > 30 ? 30 : songCount;
+//   const set = new Set();
+//   let randomNum=Math.floor(Math.random()*songNum());
+//   while (set.size < limit) {
+//     set.add(randomNum);
+//   }
+//   console.log(set);
+//   return[...set];
+// }
+
+
+
+// await songList();

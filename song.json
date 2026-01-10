@@ -1,9 +1,8 @@
 [
     {
-    "tittle": "MILLIONAIRE",
-    "duration":"" ,
+    "tittle": "MILLIONAIRE!",
     "path": "song/MILLIONAIRE.mp3",
-    "photo":"song/MILLIONAIRE.jpg"
+    "image":"song/MILLIONAIRE.jpg"
 
 
     },
@@ -12,25 +11,24 @@
     {
     
     "tittle": "GANGNAM",
-    "duration":"" ,
     "path": "song/GANGNAM.mp3",
-    "photo":"song/GANGNAM.jpg"
+    "image":"song/GANGNAM.jpg"
 
     },
     {
-
+        "tittle":"Lady Gaga, Bruno Mars - Die With A Smile",
         "path":"song/Lady Gaga, Bruno Mars - Die With A Smile.mp3",
-        "photo":"song/Lady Gaga, Bruno Mars - Die With A Smile.jpg"
+        "image":"song/Lady Gaga, Bruno Mars - Die With A Smile.jpg"
     },
     {
-
+        "tittle":"Mashup - Achcha Lagta Hai Masakali  Cover",
         "path":"song/Mashup - Achcha Lagta Hai Masakali  Cover.mp3",
-        "photo":"song/Mashup - Achcha Lagta Hai Masakali  Cover.jpg"
+        "image":"song/Mashup - Achcha Lagta Hai Masakali  Cover.jpg"
     },
     {
-
+        "tittle":"ROSE & Bruno -APT",
         "path":"song/ROSE & Bruno -APT.mp3",
-        "photo":"song/ROSE & Bruno -APT.jpg"
+        "image":"song/ROSE & Bruno -APT.jpg"
     }
 
 
