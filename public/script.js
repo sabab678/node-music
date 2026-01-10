@@ -12,7 +12,7 @@ function song(path, image, tittle) {
 
 
     let thumbnail = document.createElement('img');
-    thumbnail.src = image;
+    thumbnail.src = `/api/songs/${image}`;
     thumbnail.alt = "";
     thumbnail.style.width = "150px";
     thumbnail.style.height = "auto";

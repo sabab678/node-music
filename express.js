@@ -9,7 +9,13 @@ const port = process.env.PORT || 3000;
 
 
 app.use(express.static('public'));
+
 app.use('/api/songs', express.static('song'));
+//     ('/api/songs') is not url of your local 
+//     folder this is for where your file can access
+//     or will find. ==more==> script.js line 15  
+
+
 
 
 // app.get('/', (req, res) => {
