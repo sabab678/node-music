@@ -97,7 +97,7 @@ async function showSongs(list) {
 
 
 
-app.get('/api/songs', async (req, res) => {
+app.use('/api/songs', async (req, res) => {
   try {
     const songs = await showSongs(await songList());
     res.json(songs);
